@@ -4,8 +4,14 @@
   <arg name="gui" default="true" />
   <arg name="run_camera" default="false"/>
 
+  <!--
   <arg name="x_pos" default="-5.388334"/>
   <arg name="y_pos" default="-4.094883"/>
+  <arg name="z_pos" default="0.0"/>
+  -->
+
+  <arg name="x_pos" default="0.0"/>
+  <arg name="y_pos" default="0.0"/>
   <arg name="z_pos" default="0.0"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -15,7 +21,7 @@
   </include>
 
   <!-- urdf xml robot description loaded on the Parameter Server, converting the xacro into a proper urdf file-->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find racecar_description)/urdf/racecar.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find racecar_description)/urdf/racecar.urdf.xacro'" />
 
   <!-- push robot_description to factory and spawn robot in gazebo -->
   <node name="racecar_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model racecar -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)" />
